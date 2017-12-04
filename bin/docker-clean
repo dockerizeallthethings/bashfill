@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Remove all exited containers
+docker rm -f $(docker ps -q -f status=exited) || echo 'no exited containers found'
+
+# Remove all dangling images
+docker rmi -f $(docker images -q -f dangling=true) || echo 'no dangling images found'
+
+# Remove all dangling volumes
+docker volume rm -f $(docker volume ls -q -f dangling=true) || echo 'no dangling volumes found'
+
+# Remove all unused networks
+docker network prune

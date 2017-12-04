@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Remove all containers
+docker rm -f $(docker ps -qa) || 'no containers found'
+
+# Remove all images
+docker rmi -f $(docker images -qa) || 'no images found'
+
+# Remove all volumes
+docker volume rm -f $(docker volume ls -qa) || 'no volumes found'
+
+# Remove all unused networks
+docker network prune

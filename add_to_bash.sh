@@ -4,25 +4,22 @@ mkdir -p $HOME/.dockerizeit/
 
 cp -R . $HOME/.dockerizeit
 
+chmod +x $HOME/.dockerizeit/bin/*
+
 declare -a commands_to_add_to_bash=('' '# Setting PATH from dockerizeit' '# Check it out at https://github.com/dockerizeallthethings/bashfill' 'export PATH=$HOME/.dockerizeit/bin:$PATH')
 
-# for line in "${commands_to_add_to_bash[@]}"
-# do
-# 	echo "$line"
-# done
-
 if [ -f  "$HOME/.bashrc" ]; then
-	# echo $commands_to_add_to_bash >> $HOME/.bashrc
 	for line in "${commands_to_add_to_bash[@]}"
 	do
 		echo "$line" >> $HOME/.bashrc
 	done
+	source ~/.bashrc
 elif [ -f "$HOME/.bash_profile" ]; then
-	# echo $commands_to_add_to_bash >> $HOME/.bash_profile
 	for line in "${commands_to_add_to_bash[@]}"
 	do
 		echo "$line" >> $HOME/.bash_profile
 	done
+	source ~/.bash_profile
 else
 	# inform that the user needs either bashrc or bash_profile to use this
 	# check if it's linux or mac
@@ -33,4 +30,3 @@ else
 	# - create a file containing $commands_to_add_to_bash
 	exit 0
 fi
-
