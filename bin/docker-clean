@@ -10,4 +10,4 @@ docker rmi -f $(docker images -q -f dangling=true) || echo 'no dangling images f
 docker volume rm -f $(docker volume ls -q -f dangling=true) || echo 'no dangling volumes found'
 
 # Remove all unused networks
-docker network prune
+docker network prune -f

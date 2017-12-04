@@ -10,4 +10,4 @@ docker rmi -f $(docker images -qa) || 'no images found'
 docker volume rm -f $(docker volume ls -qa) || 'no volumes found'
 
 # Remove all unused networks
-docker network prune
+docker network prune -f
